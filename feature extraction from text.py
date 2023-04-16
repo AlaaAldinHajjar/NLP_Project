@@ -397,3 +397,222 @@ def extracting_features(s):
                                             coref_dict[type1] = type2
                                             done = True
     print(coref_dict)
+    
+    
+def analayzing_nmod():
+    for item in nmod_list:
+        tempVB = item[0], item[2]
+        if tempVB in VB_dict:
+            do = -1, -1
+            ns = -1, -1
+            nsp = -1, -1
+            if item[1] == 'agent':
+                usedVB_dict[item[0], item[2]] = 'yes'
+                third = null
+                case = null
+                for item0 in nmod_list:
+                    tempVB0 = item0[0], item0[2]
+                    if tempVB0 == tempVB and item0[1] != 'agent':
+                        third = item0[0], item0[4]
+                        if third in coref_dict:
+                            third = coref_dict[third]
+                        case = item0[1]
+                first = item[0], item[4]
+                if first in coref_dict:
+                    first = coref_dict[first]
+                for item1 in nsubjpass_list:
+                    if item[0] == item1[0] and item[2] == item1[1]:
+                        nsp = item[0], item1[3]
+                        if nsp in coref_dict:
+                            nsp = coref_dict[nsp]
+                        temp = [first], lemma_dict[first], [tempVB], lemma_dict[tempVB], [
+                            nsp], lemma_dict[nsp], case, [third], lemma_dict[third]
+                        draw_list.append(temp)
+                        usedNN_dict[item[0], item[4]] = 'yes'
+                        usedNN_dict[nsp] = 'yes'
+                        usedNN_dict[third] = 'yes'
+                if nsp == null:
+                    temp = [first], lemma_dict[first], [tempVB], lemma_dict[tempVB], [
+                        nsp], lemma_dict[nsp], case, [third], lemma_dict[third]
+                    draw_list.append(temp)
+                    usedNN_dict[item[0], item[4]] = 'yes'
+                    usedNN_dict[third] = 'yes'
+            else:
+                boolflag = False
+                for ag in agent_list:
+                    if ag[0] == item[0]and ag[1] == item[2]:
+                        boolflag = True
+                if not boolflag:
+                    usedVB_dict[item[0], item[2]] = 'yes'
+                    third = item[0], item[4]
+                    if third in coref_dict:
+                        third = coref_dict[third]
+                    for item1 in dobj_list:
+                        if item[0] == item1[0] and item[2] == item1[1]:
+                            do = item[0], item1[3]
+                            if do in coref_dict:
+                                do = coref_dict[do]
+                            for item1 in nsubj_list:
+                                if item[0] == item1[0] and item[2] == item1[1]:
+                                    ns = item[0], item1[3]
+                                    if ns in coref_dict:
+                                        ns = coref_dict[ns]
+                                    temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                        do], lemma_dict[do], item[1], [third], lemma_dict[third]
+                                    draw_list.append(temp)
+                                    usedNN_dict[ns] = 'yes'
+                                    usedNN_dict[do] = 'yes'
+                                    usedNN_dict[item[0], item[4]] = 'yes'
+                            if ns == null:
+                                for item1 in acl_list:
+                                    if item[0] == item1[0] and item[2] == item1[3]:
+                                        ns = item[0], item1[1]
+                                        if ns in coref_dict:
+                                            ns = coref_dict[ns]
+                                        temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                            do], lemma_dict[do], item[1], [third], lemma_dict[third]
+                                        draw_list.append(temp)
+                                        usedNN_dict[ns] = 'yes'
+                                        usedNN_dict[do] = 'yes'
+                                        usedNN_dict[item[0],
+                                                    item[4]] = 'yes'
+                    if do == null:
+                        for item1 in nsubjpass_list:
+                            if item[0] == item1[0] and item[2] == item1[1]:
+                                do = item[0], item1[3]
+                                if do in coref_dict:
+                                    do = coref_dict[do]
+                        for item1 in nsubj_list:
+                            if item[0] == item1[0] and item[2] == item1[1]:
+                                ns = item[0], item1[3]
+                                if ns in coref_dict:
+                                    ns = coref_dict[ns]
+                                temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                    do], lemma_dict[do], item[1], [third], lemma_dict[third]
+                                draw_list.append(temp)
+                                usedNN_dict[ns] = 'yes'
+                                usedNN_dict[item[0], item[4]] = 'yes'
+                                usedNN_dict[do] = 'yes'
+                                usedNN_dict[third] = 'yes'
+                        if ns == null:
+                            for item1 in acl_list:
+                                if item[0] == item1[0] and item[2] == item1[3]:
+                                    ns = item[0], item1[1]
+                                    if ns in coref_dict:
+                                        ns = coref_dict[ns]
+                                    temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                        do], lemma_dict[do], item[1], [third], lemma_dict[third]
+                                    draw_list.append(temp)
+                                    usedNN_dict[ns] = 'yes'
+                                    usedNN_dict[item[0], item[4]] = 'yes'
+                        if do != null and ns == null:
+                            temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                do], lemma_dict[do], item[1], [third], lemma_dict[third]
+                            draw_list.append(temp)
+
+        else:
+            first = item[0], item[2]
+            if first in coref_dict:
+                first = coref_dict[first]
+            third = item[0], item[4]
+            if third in coref_dict:
+                third = coref_dict[third]
+            temp = [first], lemma_dict[first], [null], lemma_dict[null], [
+                null], lemma_dict[null], item[1], [third], lemma_dict[third]
+            draw_list.append(temp)
+            usedNN_dict[first] = 'yes'
+            usedNN_dict[third] = 'yes'
+
+
+def analayzing_verbs():
+    for item in VB_list:
+        tempVB = item[0][0], item[0][1]
+        if tempVB not in usedVB_dict and lemma_dict[tempVB] != 'be':
+            do = -1, -1
+            ns = -1, -1
+            for item1 in dobj_list:
+                if item[0][0] == item1[0] and item[0][1] == item1[1]:
+                    do = item[0][0], item1[3]
+                    if do in coref_dict:
+                        do = coref_dict[do]
+                    for item1 in nsubj_list:
+                        if item[0][0] == item1[0] and item[0][1] == item1[1]:
+                            ns = item[0][0], item1[3]
+                            if ns in coref_dict:
+                                ns = coref_dict[ns]
+                            temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                do], lemma_dict[do], lemma_dict[null], [null], lemma_dict[null]
+                            draw_list.append(temp)
+                            usedNN_dict[ns] = 'yes'
+                            usedNN_dict[do] = 'yes'
+                    if ns == null:
+                        for item1 in acl_list:
+                            if item[0][0] == item1[0] and item[0][1] == item1[3]:
+                                ns = item[0][0], item1[1]
+                                if ns in coref_dict:
+                                    ns = coref_dict[ns]
+                                temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                    do], lemma_dict[do], lemma_dict[null], [null], lemma_dict[null]
+                                draw_list.append(temp)
+                                usedNN_dict[ns] = 'yes'
+                                usedNN_dict[do] = 'yes'
+            if do == null:
+                for item1 in nsubj_list:
+                    if item[0][0] == item1[0] and item[0][1] == item1[1]:
+                        ns = item[0][0], item1[3]
+                        if ns in coref_dict:
+                            ns = coref_dict[ns]
+                        temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                            do], lemma_dict[do], lemma_dict[null], [null], lemma_dict[null]
+                        draw_list.append(temp)
+                        usedNN_dict[ns] = 'yes'
+                if ns == null:
+                    for item1 in acl_list:
+                        if item[0][0] == item1[0] and item[0][1] == item1[3]:
+                            ns = item[0][0], item1[1]
+                            if ns in coref_dict:
+                                ns = coref_dict[ns]
+                            temp = [ns], lemma_dict[ns], [tempVB], lemma_dict[tempVB], [
+                                do], lemma_dict[do], lemma_dict[null], [null], lemma_dict[null]
+                            draw_list.append(temp)
+                            usedNN_dict[ns] = 'yes'
+
+
+def analayzing_nsubj():
+    for item in nsubj_list:
+        tempNS = item[0], item[1]
+        if tempNS in NN_dict:
+            if tempNS in coref_dict:
+                tempNS = coref_dict[tempNS]
+            for item1 in case_list:
+                if item[0] == item1[0] and item[1] == item1[1]:
+                    case = item[0], item1[3]
+                    me = item[0], item[3]
+                    if me in coref_dict:
+                        me = coref_dict[me]
+            temp = [me], lemma_dict[me], [null], lemma_dict[null], [
+                null], lemma_dict[null], lemma_dict[case], [tempNS], lemma_dict[tempNS]
+            draw_list.append(temp)
+            usedNN_dict[me] = 'yes'
+            usedNN_dict[tempNS] = 'yes'
+
+
+def add_unused_NN():
+    for item in NN_list:
+        NN = item[0][0], item[0][1]
+        if NN not in usedNN_dict and NN not in coref_dict:
+            temp = [NN], lemma_dict[NN], [null], lemma_dict[null], [
+                null], lemma_dict[null], lemma_dict[null], [null], lemma_dict[null]
+            draw_list.append(temp)
+
+
+def analayzing_adj():
+    for item in nsubj_list:
+        tempNS = item[0], item[1]
+        if pos_dict[tempNS] == 'JJ'or pos_dict[tempNS] == 'RB'or pos_dict[tempNS] == 'RBR' or pos_dict[tempNS] == 'RBS' or pos_dict[tempNS] == 'RP':
+            tempO = item[0], item[3]
+            if tempO in coref_dict:
+                tempO = coref_dict[tempO]
+            temp = tempO, lemma_dict[tempNS]
+            adjectives_list.append(temp)
+            adjectives_set.add(temp)
