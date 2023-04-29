@@ -423,16 +423,16 @@ Example 3: Ahmad and Lama are eating a sandwich. The sun is shining.\
 Example 4: A car on the road.
 
 [Result 1.]
-![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image.jpg?raw=true)
+![plot](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image.jpg?raw=true)
 
 [Result 2.]
-![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image1.jpg?raw=true)
+![plot](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image1.jpg?raw=true)
 
 [Result 3.]
-![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image2.jpg?raw=true)
+![plot](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image2.jpg?raw=true)
 
 [Result 4.]
-![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image3.jpg?raw=true)
+![plot](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image3.jpg?raw=true)
 
 # Conclusion
 
