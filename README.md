@@ -422,17 +422,13 @@ is eating an apple. The sun is shining.\
 Example 3: Ahmad and Lama are eating a sandwich. The sun is shining.\
 Example 4: A car on the road.
 
-[Result 1.]{.image .placeholder original-image-src="image.png"
-original-image-title="fig:" width="90%"}
+[Result 1.]![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image.png?raw=true)
 
-[Result 2.]{.image .placeholder original-image-src="image2.png"
-original-image-title="fig:" width="90%"}
+[Result 2.]![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image1.png?raw=true)
 
-[Result 3.]{.image .placeholder original-image-src="image3.png"
-original-image-title="fig:" width="90%"}
+[Result 3.]![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image2.png?raw=true)
 
-[Result 4.]{.image .placeholder original-image-src="image4.png"
-original-image-title="fig:" width="90%"}
+[Result 4.]![alt text](https://github.com/AlaaAldinHajjar/NLP_Project/edit/main/image3.png?raw=true)
 
 # Conclusion
 
